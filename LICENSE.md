@@ -1,4 +1,1 @@
-.DS_Store*
-*.xml
-*.pyc
-*.idea
+MIT License
