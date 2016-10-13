@@ -151,7 +151,7 @@ def BuildDataset(datasets, is_single):
 
             records = GetRecord(texts=texts, strengths=strengths, labels=labels, pos=pos_info)
             print "dataset: %s, n_records: %s\n\n" % (ds, len(records))
-            #cPickle.dump([records, glove_embeddings, vocab, word_to_df], open("./pkl/%s.pkl" % (ds), "wb"))
+            cPickle.dump([records, glove_embeddings, vocab, word_to_df], open("./pkl/%s.pkl" % (ds), "wb"))
     else:
         assert isinstance(datasets, dict)
         for ds1 in datasets[1]:
@@ -219,7 +219,7 @@ def BuildDataset(datasets, is_single):
                     is_single=is_single, cur_records=records_ds1, n_prev=len(texts_ds1))
 
                 print "dataset: %s+%s, n_records: %s\n\n" % (ds1, ds2, len(records))
-                #cPickle.dump([records, glove_embeddings, vocab, word_to_df], open("./pkl/%s_%s.pkl" % (ds1, ds2), "wb"))
+                cPickle.dump([records, glove_embeddings, vocab, word_to_df], open("./pkl/%s_%s.pkl" % (ds1, ds2), "wb"))
 
 if __name__ == '__main__':
     ds_name = sys.argv[1] # ds_name: your own dataset name
