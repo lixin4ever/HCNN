@@ -6,7 +6,7 @@ Run the baseline model:
 
     python baseline.py PA PB
     
-where PA, PB represent model name and dataset name respectively. PA is `CNN` or `LSTM`, where the former is the **CNN-non-static** proposed in [Kim's paper](http://www.aclweb.org/anthology/D14-1181) and the latter is the basic **LSTM** model using the last hidden state as the sentence representation.
+PA, PB represent model name and dataset name respectively. PA is `CNN` or `LSTM`, where the former is the **CNN-non-static** proposed in [Kim's paper](http://www.aclweb.org/anthology/D14-1181) and the latter is the basic **LSTM** model using the last hidden state as the sentence representation.
 
 Run HCNN:
  
