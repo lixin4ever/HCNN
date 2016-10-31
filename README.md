@@ -12,7 +12,7 @@ Run HCNN:
  
     python model.py
    
-If GPU and CUDA toolkit are available on your machine, Keras will use GPU in default case. To accelerate the execution, you can add theano flags `lib.cnmem=1` (Note: it only works on theano backend):
+If GPU and CUDA toolkit are available on your machine, Keras will use GPU in default case. To accelerate the execution, you can add theano flags `lib.cnmem=1` if your GPU is in idle state (Note: it only works on theano backend):
 
     THEANO_FLAGS="lib.cnmem=1" python model.py
     
