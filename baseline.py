@@ -162,6 +162,7 @@ def run(model_name, dataset_name):
         model_path = './model/%s_%s.hdf5' % (model_name, dataset_name)
         best_model = ModelCheckpoint(filepath=model_path, monitor='val_acc',
                                      save_best_only=True, mode='max')
+        n_epoch = 20
         print "training..."
         model.fit(x=train_x, y=train_y,
                     batch_size=batch_size, nb_epoch=n_epoch,
@@ -177,6 +178,7 @@ def run(model_name, dataset_name):
             res = model.predict(data={'input': test_x[i: i+1]}, batch_size=1)
             pred_strength.append(res['output'])
         pred_strength = np.array(pred_strength)
+        pred_strength = pred_strength.reshape((pred_strength.shape[0], pred_strength.shape[2]))
         assert pred_strength.shape == test_strength.shape
     print "evaluate performance of the system..."
     accu, ap, rmse = evaluate(strength_gold=test_strength, strength_pred=pred_strength)
