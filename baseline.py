@@ -167,7 +167,7 @@ def run(model_name, dataset_name):
         model.fit(x=train_x, y=train_y,
                     batch_size=batch_size, nb_epoch=n_epoch,
                     validation_data=(val_x, val_y),
-                    callbacks=[best_model])
+                    callbacks=[best_model], verbose=0)
     pred_strength = []
     print "load the best model from disk..."
     model.load_weights(model_path)
@@ -181,14 +181,14 @@ def run(model_name, dataset_name):
         pred_strength = pred_strength.reshape((pred_strength.shape[0], pred_strength.shape[2]))
         assert pred_strength.shape == test_strength.shape
     print "evaluate performance of the system..."
-    accu, ap, rmse = evaluate(strength_gold=test_strength, strength_pred=pred_strength)
-    print "%s over %s--->accuracy: %s, ap: %s, rmse: %s\n\n" % (model_name, dataset_name, accu, ap, rmse)
+    accu, mae, rmse = evaluate(strength_gold=test_strength, strength_pred=pred_strength)
+    print "%s over %s--->accuracy: %s, mae: %s, rmse: %s\n\n" % (model_name, dataset_name, accu, mae, rmse)
 
     pred_strengths_lines = []
     for strength in pred_strength:
         pred_strengths_lines.append('%s\n' % ' '.join([str(ele) for ele in strength]))
-    with open('./res/%s_pred.txt' % dataset_name, 'w+') as fp:
-        fp.writelines(pred_strengths_lines)
+    #with open('./res/%s_pred.txt' % dataset_name, 'w+') as fp:
+    #    fp.writelines(pred_strengths_lines)
 
 
 if __name__ == '__main__':

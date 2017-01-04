@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 def corrcoef(a, b):
 	# a, b-->numpy.ndarray
@@ -40,6 +40,10 @@ def RMSE(gold, pred):
 	assert gold.shape == pred.shape
 	return mean_squared_error(gold, pred) ** 0.5
 
+def MAE(gold, pred):
+	assert gold.shape == pred.shape
+	return mean_absolute_error(gold, pred)
+
 def evaluate(strength_gold, strength_pred):
 	# strength_gold, strength_pred-->numpy array
 	accuracy = accuAT1(strength_gold, strength_pred)
@@ -48,9 +52,10 @@ def evaluate(strength_gold, strength_pred):
 	pos_gold = strength_gold[:, 0]
 	pos_pred = strength_pred[:, 0]
 	# averaged pearson correlation coefficient
-	ap = corrcoef(a=pos_gold, b=pos_pred)
+	#ap = corrcoef(a=pos_gold, b=pos_pred)
+	mae = MAE(gold=strength_gold, pred=strength_pred)
 	rmse = RMSE(gold=strength_gold, pred=strength_pred)
-	return accuracy, ap, rmse
+	return accuracy, mae, rmse
 
 
 
