@@ -228,16 +228,16 @@ if __name__ == '__main__':
     datasets = {}
     is_single = True
     if ds_name == 'all' and mode == 'single':
-        datasets = listdir('./data')
+        datasets = [f for f in listdir('./data') if not f.startswith('README')]
     elif ds_name == 'all' and mode == 'multiple':
-        datasets[1] = listdir('./data')
-        datasets[2] = listdir('./data')
+        datasets[1] = [f for f in listdir('./data') if not f.startswith('README')]
+        datasets[2] = [f for f in listdir('./data') if not f.startswith('README')]
         is_single = False
     elif ds_name != 'all' and mode == 'single':
         datasets = [ds_name]
     elif ds_name != 'all' and mode == 'multiple':
         datasets[1] = [ds_name]
-        datasets[2] = [ds for ds in listdir('./data') if ds != ds_name]
+        datasets[2] = [ds for ds in listdir('./data') if ds != ds_name and not ds.startswith('README')]
         is_single = False
     BuildDataset(datasets=datasets, is_single=is_single)
 
