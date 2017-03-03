@@ -16,7 +16,19 @@ If GPU and CUDA toolkit are available on your machine, Keras will use GPU in def
 
     THEANO_FLAGS="lib.cnmem=1" python model.py
     
-## Settings
+To run experiment over multiple datasets, execute fast_run.py with `mode` parameter
+ 
+    python fast_run.py mode
+    
+`mode` can be **baseline**, **HCNN** or **HCNN_ablation**, which means runing baseline, HCNN or doing ablation experiment on HCNN respectively.
+    
+## Parameter Settings
+`Word embedding`: [GloVe](http://nlp.stanford.edu/projects/glove/) (twitter.27B.200d)
+`dim_w`: 200
+`n_k`: 80 (number of convolutional kernels)
+`n_pos`: 2 (number of convolutional kernels for POS tags)
+`dim_d`: 100 (dimension of sentence or document)
+
 ## Environments
 * OS: REHL Server 6.4 (Santiago)
 * GPU: GeForce GTX Titan Black
